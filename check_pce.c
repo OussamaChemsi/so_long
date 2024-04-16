@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 21:16:57 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/15 20:42:25 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/15 20:51:14 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,43 +21,39 @@ void	print_error(t_var *var)
 	}
 }
 
-void	initialise_var(t_var **var)
+void	initialise_var(t_var *var)
 {
-	(*var)->c = 0;
-	(*var)->p = 0;
-	(*var)->e = 0;
-	(*var)->i = 0;
-	(*var)->j = 0;
-	(*var)->r = 0;
+	var->c = 0;
+	var->p = 0;
+	var->e = 0;
+	var->i = 0;
+	var->j = 0;
+	var->r = 0;
 }
 
 void	check_pce(char **tab)
 {
-	t_var	*var;
-
-	var = malloc(sizeof(t_var));
-	if (!var)
-		return ;
+	t_var var;
 	initialise_var(&var);
-	while (tab[var->i])
+	while (tab[var.i])
 	{
-		var->j = 0;
-		while (tab[var->i][var->j])
+		var.j = 0;
+		while (tab[var.i][var.j])
 		{
-			if (tab[var->i][var->j] == 'P')
-				var->p++;
-			else if (tab[var->i][var->j] == 'C')
-				var->c++;
-			else if (tab[var->i][var->j] == 'E')
-				var->e++;
-			else if ((tab[var->i][var->j] != '1')
-					&& (tab[var->i][var->j] != '0'))
-				var->r++;
-			var->j++;
+			if (tab[var.i][var.j] == 'P')
+				var.p++;
+			else if (tab[var.i][var.j] == 'C')
+				var.c++;
+			else if (tab[var.i][var.j] == 'E')
+				var.e++;
+			else if ((tab[var.i][var.j] != '1')
+					&& (tab[var.i][var.j] != '0'))
+				var.r++;
+			var.j++;
 		}
-		var->i++;
+		var.i++;
 	}
-	print_error(var);
+	print_error(&var);
 }
 
 void	check_map(char **tab)
