@@ -6,27 +6,27 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 18:24:32 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/15 01:57:43 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/18 00:19:10 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 // check len deyalhom wache fhalfhal
-int	check_len(char **tab)
-{
-	int	i;
+// int	check_len(char **tab)
+// {
+// 	int	i;
 
-	i = 0;
-	while (tab[i])
-	{
-		if (ft_strlen(tab[0]) == ft_strlen(tab[i]))
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}
+// 	i = 0;
+// 	while (tab[i])
+// 	{
+// 		if (ft_strlen(tab[0]) == ft_strlen(tab[i]))
+// 			i++;
+// 		else
+// 			return (0);
+// 	}
+// 	return (1);
+// }
 // ster lwl  fihom kghir 1
 
 int	check_line_one(char **tab)

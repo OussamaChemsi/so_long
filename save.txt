@@ -1,0 +1,44 @@
+	
+	// char *line;
+	// char *src;
+	// char **tab;
+	// int a;
+	// src = NULL;
+	// a = 0;
+	// // int i = 0;
+
+	// fd = open(av, O_RDONLY);
+	// if (fd < 0)
+	// {
+	// 	write(1, "ERROR\nmap not found\n", 21);
+	// 	exit(EXIT_FAILURE);
+	// }
+	// line = get_next_line(fd);
+	// while (line != NULL)
+	// {
+	// 	src = ft_strjoin(src, line);
+	// 	free(line);
+	// 	line = get_next_line(fd);
+	// 	a++;
+	// }
+	// tab = ft_split(src, '\n');
+	// // lenght of tab
+	// //  printf("%s",tab[0]);
+	// //  printf("%s",tab[1]);
+	// //  printf("%s",tab[2]);
+	// // printf("%s",tab[3]);
+
+	// // while (tab[i])
+	// // 	i++;
+	// // handel newline zayd
+	// // if (a != i)
+	// // {
+	// // 	write(1, "ERROR\nzayda newline\n", 21);
+	// // 	exit(EXIT_FAILURE);
+	// // }
+	// check_map(tab);
+	// check_pce(tab);
+	// flood_fill(&tab, x_p(tab), y_p(tab));
+	// check_x(tab);
+
+	// close(fd);

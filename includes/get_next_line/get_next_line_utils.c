@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 01:37:38 by ochemsi           #+#    #+#             */
-/*   Updated: 2023/12/16 18:10:12 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/17 20:10:22 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin(char *archive, char *buff)
 	{
 		return (ft_strdup(buff));
 	}
-	if (!archive || !buff)
+	if (!buff)
 		return (NULL);
 	str = malloc(sizeof(char) * ((ft_strlen(archive) + ft_strlen(buff)) + 1));
 	if (str == NULL)
@@ -48,7 +48,7 @@ char	*ft_strdup(char *src)
 	size = ft_strlen(src);
 	dest = (char *)malloc(size * sizeof(char) + 1);
 	if (dest == NULL)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (src[i])
 	{
