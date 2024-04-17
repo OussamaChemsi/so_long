@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 01:45:50 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/15 01:59:43 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/17 04:40:39 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ int		check_line_one(char **tab);
 int		check_line_last(char **tab);
 int		check_1_in_first(char **tab);
 int		check_1_in_last(char **tab);
+void flood_fill(char **tab,int x,int y);
+int y_p(char **tab);
+int x_p(char **tab);
+int check_x(char **tab);
+
+
 typedef struct var_s
 {
 	int	i;

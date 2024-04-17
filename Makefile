@@ -12,7 +12,7 @@ NAME = so_long
 
 all :
 
-	$(CC) $(CFLAGS) ft_split.c utils_split.c so_long.c check_pce.c check_map.c $(GET_NEXT_LINE)/get_next_line.c $(GET_NEXT_LINE)/get_next_line_utils.c ft_strstr.c  -o $(NAME)
+	$(CC) $(CFLAGS) flood_fill.c ft_split.c utils_split.c so_long.c check_pce.c check_map.c $(GET_NEXT_LINE)/get_next_line.c $(GET_NEXT_LINE)/get_next_line_utils.c ft_strstr.c  -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)

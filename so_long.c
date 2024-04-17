@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 00:06:37 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/15 21:23:30 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/17 04:41:56 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ void	map_tab(char *av)
 	char	*line;
 	char	*src;
 	char	**tab;
+	src = NULL ;
 
-	// line = NULL;
-	// src = NULL;
-	// tab = NULL;
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 	{
@@ -29,23 +27,25 @@ void	map_tab(char *av)
 		exit(EXIT_FAILURE);
 	}
 	line = get_next_line(fd);
-	//111111111111111
-	//width = ft_strlen(line);
-	//height = 0 ;
 	while (line != NULL)
 	{
-		//height++;
 		src = ft_strjoin(src, line);
 		free(line);
 		line = get_next_line(fd);
-		//if (ft_strlen(line) != width)
-		//exit();
 	}
 	tab = ft_split(src, '\n');
 	check_map(tab);
 	check_pce(tab);
+	flood_fill(tab,x_p(tab),y_p(tab));
+	// if (check_x(tab) != 1)
+    // {
+    //     write(1, "ERROR\nmap incorrect\n", 21);
+    //     exit(EXIT_FAILURE);
+    // }
 	close(fd);
 }
+
+
 
 int	main(int ac, char **av)
 {
