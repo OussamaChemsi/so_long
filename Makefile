@@ -1,23 +1,31 @@
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 GET_NEXT_LINE = includes/get_next_line
 
+# SRC = $(wildcard *.c)
+SRC = check_map.c check_pce.c flood_fill.c so_long.c utils.c $(GET_NEXT_LINE)/get_next_line.c   $(GET_NEXT_LINE)/get_next_line_utils.c
 
-SRC = so_long.c  $(GET_NEXT_LINE)/get_next_line.c $(GET_NEXT_LINE)/get_next_line_utils.c ft_strstr.c
-
-OBJ	= $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
+LINK = -lXext -lX11 -lmlx
 
 NAME = so_long
 
-all :
+all : $(NAME)
 
-	$(CC) $(CFLAGS) flood_fill.c  utils.c so_long.c check_pce.c check_map.c $(GET_NEXT_LINE)/get_next_line.c $(GET_NEXT_LINE)/get_next_line_utils.c   -o $(NAME)
+$(NAME) : $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+
+%.o:%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ)
 
-fclean: clean
+fclean:clean
 	rm -rf $(NAME)
 
-re: fclean all
+re : fclean all
+
+
