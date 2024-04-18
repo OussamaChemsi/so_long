@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 00:06:37 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/18 00:48:20 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/18 03:45:51 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	loop_map(t_data *data, int fd, char *tmp)
 	while (data->line != NULL)
 	{
 		data->height++;
-		if (data->line[ft_strlen(data->line) - 1] == '\n')
+		if (data->line[(int)ft_strlen(data->line) - 1] == '\n')
 		{
 			tmp = ft_substr(data->line, 0, data->width);
 			data->line = tmp;
 		}
-		if (data->width != ft_strlen_w_nl(data->line))
+		if (data->width != (int)ft_strlen_w_nl(data->line))
 			exit_w_message("ERROR\nyou have empty line!\n");
 		data->lines = ft_strjoin(data->lines, data->line);
 		free(data->line);
@@ -36,6 +36,7 @@ void	reading_map(char *av, t_data *data)
 	int		fd;
 	char	*tmp;
 
+	tmp = NULL;
 	data->lines = NULL;
 	data->height = 0;
 	fd = open(av, O_RDONLY);
@@ -43,7 +44,7 @@ void	reading_map(char *av, t_data *data)
 		exit_w_message("file not found!\n");
 	data->line = get_next_line(fd);
 	data->width = (int)ft_strlen_w_nl(data->line);
-	if (data->line[ft_strlen(data->line) - 1] == '\n')
+	if (data->line[(int)ft_strlen(data->line) - 1] == '\n')
 	{
 		tmp = ft_substr(data->line, 0, data->width);
 		data->line = tmp;
@@ -71,6 +72,7 @@ void	tab_2d(t_data *data)
 		end += data->width;
 	}
 	data->tab[i] = 0;
+	check_pce(data);
 	free(data->lines);
 }
 
@@ -79,6 +81,9 @@ void	maistro_func(char *av, t_data *data)
 	check_path(av);
 	reading_map(av, data);
 	tab_2d(data);
+	flood_fill(data, x_p(data->tab), y_p(data->tab));
+	check_repeat(data->tab);
+	check_walls(data);
 }
 
 int	main(int ac, char **av)

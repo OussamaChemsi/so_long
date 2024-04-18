@@ -6,98 +6,62 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 18:24:32 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/18 00:19:10 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/18 03:47:50 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// check len deyalhom wache fhalfhal
-// int	check_len(char **tab)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (tab[i])
-// 	{
-// 		if (ft_strlen(tab[0]) == ft_strlen(tab[i]))
-// 			i++;
-// 		else
-// 			return (0);
-// 	}
-// 	return (1);
-// }
-// ster lwl  fihom kghir 1
-
-int	check_line_one(char **tab)
-{
-	int	j;
-
-	j = 0;
-	while (tab[0][j])
-	{
-		if (tab[0][j] == '1')
-			j++;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-// ster lakher o lakher fihom kghir 1
-int	check_line_last(char **tab)
-{
-	int	a;
-	int	j;
-
-	a = 0;
-	j = 0;
-	while (tab[a])
-		a++;
-	while (tab[a - 1][j])
-	{
-		if (tab[a - 1][j] == '1')
-			j++;
-		else
-			return (0);
-	}
-	return (1);
-}
-// setora li lwsst fihom 1 flwl
-
-int	check_1_in_first(char **tab)
+void	check_walls(t_data *data)
 {
 	int	i;
+	int	j;
+
+	i = 0;
+	while (data->tab[i])
+	{
+		j = 0;
+		while (data->tab[i][j])
+		{
+			if (data->tab[0][j] != '1' || data->tab[i][0] != '1'
+				|| data->tab[i][data->width - 1] != '1'
+				|| data->tab[data->height - 1][j] != '1')
+				exit_w_message("ERROR\nmap should be sorounded by walls!\n");
+			j++;
+		}
+		i++;
+	}
+}
+
+void	check_repeat(char **tab)
+{
+	int	i;
+	int	j;
 
 	i = 0;
 	while (tab[i])
 	{
-		if (tab[i][0] == '1')
-			i++;
-		else
-			return (0);
+		j = 0;
+		while (tab[i][j])
+		{
+			if ((tab[i][j] != '1') && (tab[i][j] != '0') && (tab[i][j] != 'x'))
+				exit_w_message("ERROR\ninvalid map!\n");
+			j++;
+		}
+		i++;
 	}
-	return (1);
 }
-// setora li lwsst fihom 1 f lkher
 
-int	check_1_in_last(char **tab)
+void	check_path(char *av)
 {
-	int	i;
-	int	a;
-	int	b;
+	char	*str;
+	char	*to_find;
 
-	i = 0;
-	a = 0;
-	b = ft_strlen(tab[1]) - 1;
-	while (tab[a])
-		a++;
-	while (tab[i] && i <= a - 1)
+	to_find = ".ber";
+	str = av;
+	if (ft_strstr(str, to_find) == 0)
 	{
-		if (tab[i][b] == '1')
-			i++;
-		else
-			return (0);
+		write(2, "ERROR\ninvalid path\n", 20);
+		exit(1);
 	}
-	return (1);
 }

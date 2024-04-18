@@ -6,62 +6,42 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 21:16:57 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/15 20:51:14 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/18 03:53:17 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	print_error(t_var *var)
+void	print_error(t_data *data)
 {
-	if (var->c <= 0 || var->p != 1 || var->e != 1 || var->r != 0)
-	{
-		write(1, "ERROR\n3ndk mochkil f P wla c wla e\n", 36);
-		exit(EXIT_FAILURE);
-	}
+	if (data->c <= 0 || data->p != 1 || data->e != 1 || data->r != 0)
+		exit_w_message("ERROR\n the map should have P,E and C\n");
 }
 
-void	initialise_var(t_var *var)
+void	check_pce(t_data *data)
 {
-	var->c = 0;
-	var->p = 0;
-	var->e = 0;
-	var->i = 0;
-	var->j = 0;
-	var->r = 0;
-}
-
-void	check_pce(char **tab)
-{
-	t_var var;
-	initialise_var(&var);
-	while (tab[var.i])
+	data->i = 0;
+	data->c = 0;
+	data->p = 0;
+	data->e = 0;
+	data->r = 0;
+	while (data->tab[data->i])
 	{
-		var.j = 0;
-		while (tab[var.i][var.j])
+		data->j = 0;
+		while (data->tab[data->i][data->j])
 		{
-			if (tab[var.i][var.j] == 'P')
-				var.p++;
-			else if (tab[var.i][var.j] == 'C')
-				var.c++;
-			else if (tab[var.i][var.j] == 'E')
-				var.e++;
-			else if ((tab[var.i][var.j] != '1')
-					&& (tab[var.i][var.j] != '0'))
-				var.r++;
-			var.j++;
+			if (data->tab[data->i][data->j] == 'P')
+				data->p++;
+			else if (data->tab[data->i][data->j] == 'E')
+				data->e++;
+			else if (data->tab[data->i][data->j] == 'C')
+				data->c++;
+			else if ((data->tab[data->i][data->j] != '1')
+					&& (data->tab[data->i][data->j] != '0'))
+				data->r++;
+			data->j++;
 		}
-		var.i++;
+		data->i++;
 	}
-	print_error(&var);
-}
-
-void	check_map(char **tab)
-{
-	if ((check_len(tab) == 0) || (check_line_one(tab) == 0)
-		|| (check_line_last(tab) == 0) || (check_1_in_last(tab) == 0))
-	{
-		write(1, "ERROR\nmap invalid\n", 19);
-		exit(EXIT_FAILURE);
-	}
+	print_error(data);
 }
