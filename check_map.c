@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 18:24:32 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/18 03:47:50 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/22 07:09:10 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,13 @@ void	check_path(char *av)
 {
 	char	*str;
 	char	*to_find;
+	size_t	len;
 
 	to_find = ".ber";
 	str = av;
-	if (ft_strstr(str, to_find) == 0)
-	{
-		write(2, "ERROR\ninvalid path\n", 20);
-		exit(1);
-	}
+	len = ft_strlen(str);
+	if (len <= 4)
+		exit_w_message("ERROR\ninvalid path\n");
+	if ((ft_strstr(str, to_find) == 0) || (str[len - 5] == '/'))
+		exit_w_message("ERROR\ninvalid path\n");
 }
