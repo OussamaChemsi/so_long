@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 01:45:50 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/22 03:05:13 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/22 06:35:19 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "includes/get_next_line/get_next_line.h"
 # include <fcntl.h>
 # include <mlx.h>
+# include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -25,6 +26,7 @@ typedef struct s_data
 	void	*mlx;
 	void	*mlx_win;
 	void	*player;
+	void	*noting;
 	void	*collectibles;
 	void	*walls;
 	void	*exit;
@@ -69,8 +71,11 @@ void		move_up(t_data *data);
 void		move_left(t_data *data);
 void		move_down(t_data *data);
 void		move_right(t_data *data);
-void	draw_map(t_data *data);
-
-// int			ft_putnbr(int n);
+void		draw_map(t_data *data);
+void		ft_printf(const char *format, ...);
+int			handler(int key, t_data *data);
+int			close_window(t_data *data);
+void		message_xpm(t_data *data);
+void		initialize_mlx_vars(t_data *data);
 
 #endif
