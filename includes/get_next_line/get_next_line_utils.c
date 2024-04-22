@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 01:37:38 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/17 20:10:22 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/22 02:40:09 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ char	*ft_strjoin(char *archive, char *buff)
 
 	if (!archive)
 	{
-		return (ft_strdup(buff));
+		str=ft_strdup(buff);
+		//free(buff);
+		return (str);
 	}
 	if (!buff)
 		return (NULL);

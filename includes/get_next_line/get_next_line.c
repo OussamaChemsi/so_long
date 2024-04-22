@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 21:17:36 by ochemsi           #+#    #+#             */
-/*   Updated: 2023/12/16 21:15:20 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/22 02:55:01 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,3 +106,23 @@ char	*get_next_line(int fd)
 	archive = ft_new_archive(archive);
 	return (line);
 }
+
+// int	main(void)
+// {
+// 	int fd;
+// 	char *line;
+
+// 	fd = open("filename.txt", O_RDONLY);
+// 	if (fd == -1)
+// 		return (0);
+// 	line = get_next_line(fd);
+// 	while(line != NULL)
+// 	{	
+// 		free(line);
+// 		line = get_next_line(fd);
+// 	}
+// 	free(line);
+// 	close(fd);
+
+// 	return (0);
+// }

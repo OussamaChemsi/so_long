@@ -22,13 +22,9 @@ int main()
 
     win = mlx_new_window(mlx, 500 , 500, "so_long");
 
-    player = xpm_file_to_image(mlx ,"textures/asdasd.xpm", witdh, hight);
+    player = xpm_file_to_image(mlx ,"textures/pac_open_right.xpm", witdh, hight);
     mlx_hook(mlx,win, 1L<<0, 2, handler, data);
 
     mlx_loop(mlx);
 
 }
-//11111111111111
-//10p00000000001
-//1101111111111
-//1111111111111
