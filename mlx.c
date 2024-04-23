@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 06:04:03 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/23 13:42:07 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/23 23:55:15 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,15 @@ void	message_xpm(t_data *data)
 {
 	if (!data->player || !data->wall || !data->exit || !data->collectibles)
 	{
-		close_window(data);
+		mlx_destroy_image(data->mlx, data->player);
+		mlx_destroy_image(data->mlx, data->collectibles);
+		mlx_destroy_image(data->mlx, data->wall);
+		mlx_destroy_image(data->mlx, data->noting);
+		mlx_destroy_image(data->mlx, data->exit);
+		mlx_destroy_window(data->mlx, data->mlx_win);
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+		free_map(data);
 		exit_w_message("Error, Invalid xpm");
 	}
 }
@@ -84,8 +92,8 @@ void	message_xpm(t_data *data)
 void	initialize_mlx_vars(t_data *data)
 {
 	data->count_moves = 0;
-	data->mlx_win = mlx_new_window(data->mlx, data->width * 32, data->height
-			* 32, "so_long");
+	data->mlx_win = mlx_new_window(data->mlx, data->width * 32,
+			data->height * 32, "so_long");
 	data->player = mlx_xpm_file_to_image(data->mlx,
 			"textures/pac_open_right.xpm",
 			&data->width,

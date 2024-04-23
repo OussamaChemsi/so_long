@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 18:13:40 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/23 05:13:22 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/23 23:49:05 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	check_x(t_data *data)
 		j = 0;
 		while (data->tab[i][j])
 		{
-			if (data->tab[i][j] == 'P' || data->tab[i][j] == 'C'
-				|| data->tab[i][j] == 'E')
+			if ((data->tab[i][j] != '1') && (data->tab[i][j] != '0')
+				&& (data->tab[i][j] != '2') && (data->tab[i][j] != 'E'))
 			{
 				free_map(data);
 				exit_w_message("ERROR\nmap invalid\n");
@@ -91,5 +91,20 @@ void	flood_fill(t_data *data, int x, int y)
 		flood_fill(data, x - 1, y);
 		flood_fill(data, x, y + 1);
 		flood_fill(data, x, y - 1);
+	}
+}
+
+void	flood_fill_2(t_data *data, int x, int y)
+{
+	if (x < 0 || y < 0 || x >= data->height || y >= data->width)
+		return ;
+	if (data->tab[x][y] == '0' || data->tab[x][y] == 'C'
+		|| data->tab[x][y] == 'P')
+	{
+		data->tab[x][y] = '2';
+		flood_fill_2(data, x + 1, y);
+		flood_fill_2(data, x - 1, y);
+		flood_fill_2(data, x, y + 1);
+		flood_fill_2(data, x, y - 1);
 	}
 }

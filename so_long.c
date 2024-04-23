@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 00:06:37 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/23 09:19:29 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/23 23:48:42 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	reading_map(char *av, t_data *data)
 		exit_w_message("ERROR\nempty map!\n");
 	}
 	loop_map(data, fd);
+	check_size(data);
 }
 
 void	tab_2d(t_data *data)
@@ -101,6 +102,11 @@ void	maistro_func(char *av, t_data *data)
 	flood_fill(data, x_p(data), y_p(data));
 	check_repeat(data);
 	check_walls(data);
+	free_map(data);
+	reading_map(av, data);
+	tab_2d(data);
+	flood_fill_2(data, x_p(data), y_p(data));
+	check_x(data);
 }
 
 int	main(int ac, char **av)
@@ -118,7 +124,7 @@ int	main(int ac, char **av)
 	tab_2d(&data);
 	draw_map(&data);
 	mlx_hook(data.mlx_win, 2, 1L << 0, handler, &data);
-	mlx_hook(data.mlx_win, 17, 1L << 1, close_window, &data);
+	mlx_hook(data.mlx_win, 17, 1L << 1, close_window_1, &data);
 	mlx_loop(data.mlx);
 	free_map(&data);
 	return (0);

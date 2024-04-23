@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 01:45:50 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/23 07:55:11 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/23 23:48:18 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void		free_map(t_data *data);
 void		tab_2d(t_data *data);
 void		check_path(char *av);
 void		flood_fill(t_data *data, int x, int y);
+void		flood_fill_2(t_data *data, int x, int y);
 int			y_p(t_data *data);
 int			x_p(t_data *data);
 void		check_pce(t_data *data);
@@ -78,5 +79,7 @@ int			handler(int key, t_data *data);
 int			close_window(t_data *data);
 void		message_xpm(t_data *data);
 void		initialize_mlx_vars(t_data *data);
+int			close_window_1(t_data *data);
+void		check_size(t_data *data);
 
 #endif
