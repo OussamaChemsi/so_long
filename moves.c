@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 01:41:24 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/23 06:11:51 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/23 07:53:58 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ void	dispaly_moves_exit(t_data *data)
 {
 	data->count_moves++;
 	ft_printf("moves = %d", data->count_moves);
-	free_map(data);
-	mlx_destroy_window(data->mlx, data->mlx_win);
-	free(data->mlx);
+	close_window(data);
 	exit(0);
 }
 

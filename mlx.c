@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 06:04:03 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/23 06:11:15 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/23 09:21:15 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	handler(int key, t_data *data)
 {
 	if (key == ESC)
 	{
-		mlx_destroy_window(data->mlx, data->mlx_win);
-		free(data->mlx);
-		free_map(data);
+		close_window(data);
 		exit(0);
 	}
+	
+
 	if (key == W)
 		move_up(data);
 	if (key == A)
@@ -34,11 +34,16 @@ int	handler(int key, t_data *data)
 
 int	close_window(t_data *data)
 {
+	mlx_destroy_image(data->mlx, data->player);
+	mlx_destroy_image(data->mlx, data->collectibles);
+	mlx_destroy_image(data->mlx, data->wall);
+	mlx_destroy_image(data->mlx, data->noting);
+	mlx_destroy_image(data->mlx, data->exit);
 	mlx_destroy_window(data->mlx, data->mlx_win);
+	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	free_map(data);
-	exit(0);
-	return (0);
+	return(1);
 }
 
 void	draw_map(t_data *data)
@@ -73,9 +78,7 @@ void	message_xpm(t_data *data)
 {
 	if (!data->player || !data->wall || !data->exit || !data->collectibles)
 	{
-		mlx_destroy_window(data->mlx, data->mlx_win);
-		free(data->mlx);
-		free_map(data);
+		close_window(data);
 		exit_w_message("Error, Invalid xpm");
 	}
 }

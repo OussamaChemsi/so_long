@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 00:06:37 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/23 07:35:52 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/23 09:19:29 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,23 +105,22 @@ void maistro_func(char *av, t_data *data)
 
 int main(int ac, char **av)
 {
-	//t_data data;
+	t_data data;
 
-	// if (ac != 2)
-	// 	exit_w_message("Takes two arguments\n");
-	(void)av;
-	(void)ac;
-	//maistro_func(av[1], &data);
-	// data.mlx = mlx_init();
-	// initialize_mlx_vars(&data);
-	// message_xpm(&data);
-	// free_map(&data);
-	// reading_map(av[1], &data);
-	// tab_2d(&data);
-	// draw_map(&data);
-	// mlx_hook(data.mlx_win, 2, 1L << 0, handler, &data);
-	// mlx_hook(data.mlx_win, 17, 1L << 1, close_window, &data);
-	// mlx_loop(data.mlx);
-	//free_map(&data);
+	if (ac != 2)
+		exit_w_message("Takes two arguments\n");
+
+	maistro_func(av[1], &data);
+	data.mlx = mlx_init();
+	initialize_mlx_vars(&data);
+	message_xpm(&data);
+	free_map(&data);
+	reading_map(av[1], &data);
+	tab_2d(&data);
+	draw_map(&data);
+	mlx_hook(data.mlx_win, 2, 1L << 0, handler, &data);
+	mlx_hook(data.mlx_win, 17, 1L << 1, close_window, &data);
+	mlx_loop(data.mlx);
+	free_map(&data);
 	return (0);
 }
