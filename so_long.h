@@ -54,7 +54,7 @@ typedef struct s_data
 # define ESC 65307
 
 // char		*ft_substr(char *src, int start, int end);
-char	*ft_substr(char *src, int start, int end , t_data *data);
+char		*ft_substr(char *src, int start, int end, t_data *data);
 void		exit_w_message(char *message);
 size_t		ft_strlen_w_nl(char *str);
 void		free_map(t_data *data);

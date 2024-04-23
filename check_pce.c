@@ -19,7 +19,6 @@ void	print_error(t_data *data)
 		free_map(data);
 		exit_w_message("ERROR\n the map should have P,E and C\n");
 	}
-		
 }
 
 void	check_pce(t_data *data)

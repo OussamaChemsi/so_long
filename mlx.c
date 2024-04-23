@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 06:04:03 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/23 09:21:15 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/23 13:42:07 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	handler(int key, t_data *data)
 		close_window(data);
 		exit(0);
 	}
-	
-
 	if (key == W)
 		move_up(data);
 	if (key == A)
@@ -43,7 +41,7 @@ int	close_window(t_data *data)
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	free_map(data);
-	return(1);
+	return (1);
 }
 
 void	draw_map(t_data *data)
@@ -89,7 +87,9 @@ void	initialize_mlx_vars(t_data *data)
 	data->mlx_win = mlx_new_window(data->mlx, data->width * 32, data->height
 			* 32, "so_long");
 	data->player = mlx_xpm_file_to_image(data->mlx,
-			"textures/pac_open_right.xpm", &data->width, &data->height);
+			"textures/pac_open_right.xpm",
+			&data->width,
+			&data->height);
 	data->collectibles = mlx_xpm_file_to_image(data->mlx,
 			"textures/pacdot_food.xpm",
 			&data->width,

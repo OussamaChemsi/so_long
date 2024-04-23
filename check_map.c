@@ -28,9 +28,8 @@ void	check_walls(t_data *data)
 				|| data->tab[data->height - 1][j] != '1')
 			{
 				free_map(data);
-				exit_w_message("ERROR\nmap should be sorounded by walls!\n");	
+				exit_w_message("ERROR\nmap should be sorounded by walls!\n");
 			}
-
 			j++;
 		}
 		i++;
@@ -48,12 +47,12 @@ void	check_repeat(t_data *data)
 		j = 0;
 		while (data->tab[i][j])
 		{
-			if ((data->tab[i][j] != '1') && (data->tab[i][j] != '0') && (data->tab[i][j] != 'x'))
+			if ((data->tab[i][j] != '1') && (data->tab[i][j] != '0')
+				&& (data->tab[i][j] != 'x'))
 			{
 				free_map(data);
 				exit_w_message("ERROR\ninvalid map!\n");
 			}
-				
 			j++;
 		}
 		i++;

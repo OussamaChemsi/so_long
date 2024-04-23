@@ -30,7 +30,7 @@ void	free_map(t_data *data)
 	free(data->tab);
 }
 
-char	*ft_substr(char *src, int start, int end , t_data *data)
+char	*ft_substr(char *src, int start, int end, t_data *data)
 {
 	int		i;
 	char	*new_str;
@@ -43,7 +43,7 @@ char	*ft_substr(char *src, int start, int end , t_data *data)
 	{
 		free_map(data);
 		exit(0);
-	}	
+	}
 	while (start < end)
 	{
 		new_str[i] = src[start];

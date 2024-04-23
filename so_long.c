@@ -12,17 +12,17 @@
 
 #include "so_long.h"
 
-void loop_map(t_data *data, int fd)
+void	loop_map(t_data *data, int fd)
 {
-	char *line;
-	
+	char	*line;
+
 	while (data->line != NULL)
 	{
 		data->height++;
 		if (data->line[(int)ft_strlen(data->line) - 1] == '\n')
 		{
 			line = data->line;
-			data->line = ft_substr(data->line, 0, data->width,data);
+			data->line = ft_substr(data->line, 0, data->width, data);
 			free(line);
 		}
 		if (data->width != (int)ft_strlen_w_nl(data->line))
@@ -30,7 +30,7 @@ void loop_map(t_data *data, int fd)
 			free(data->lines);
 			free(data->line);
 			exit_w_message("ERROR\nyou have empty line!\n");
-		} 
+		}
 		data->lines = ft_strjoin(data->lines, data->line);
 		free(data->line);
 		data->line = get_next_line(fd);
@@ -39,10 +39,11 @@ void loop_map(t_data *data, int fd)
 	close(fd);
 }
 
-void reading_map(char *av, t_data *data)
+void	reading_map(char *av, t_data *data)
 {
-	int fd;
-	char *line;
+	int		fd;
+	char	*line;
+
 	data->lines = NULL;
 	data->height = 0;
 	fd = open(av, O_RDONLY);
@@ -65,17 +66,17 @@ void reading_map(char *av, t_data *data)
 	loop_map(data, fd);
 }
 
-void tab_2d(t_data *data)
+void	tab_2d(t_data *data)
 {
-	int i;
-	int start;
-	int end;
+	int	i;
+	int	start;
+	int	end;
 
 	i = 0;
 	start = 0;
 	end = data->width;
 	data->tab = malloc((data->height + 1) * sizeof(char *));
-	if(!data->tab)
+	if (!data->tab)
 	{
 		free(data->lines);
 		exit_w_message("fail alocation");
@@ -87,13 +88,12 @@ void tab_2d(t_data *data)
 		start += data->width;
 		end += data->width;
 	}
-
 	data->tab[data->height] = NULL;
 	free(data->lines);
 	check_pce(data);
 }
 
-void maistro_func(char *av, t_data *data)
+void	maistro_func(char *av, t_data *data)
 {
 	check_path(av);
 	reading_map(av, data);
@@ -103,13 +103,12 @@ void maistro_func(char *av, t_data *data)
 	check_walls(data);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_data data;
+	t_data	data;
 
 	if (ac != 2)
 		exit_w_message("Takes two arguments\n");
-
 	maistro_func(av[1], &data);
 	data.mlx = mlx_init();
 	initialize_mlx_vars(&data);

@@ -23,7 +23,8 @@ void	check_x(t_data *data)
 		j = 0;
 		while (data->tab[i][j])
 		{
-			if (data->tab[i][j] == 'P' || data->tab[i][j] == 'C' || data->tab[i][j] == 'E')
+			if (data->tab[i][j] == 'P' || data->tab[i][j] == 'C'
+				|| data->tab[i][j] == 'E')
 			{
 				free_map(data);
 				exit_w_message("ERROR\nmap invalid\n");
@@ -53,7 +54,6 @@ int	x_p(t_data *data)
 	}
 	free_map(data);
 	exit_w_message("ERROR\nP not foand!\n");
-
 	return (0);
 }
 
@@ -76,7 +76,6 @@ int	y_p(t_data *data)
 	}
 	free_map(data);
 	exit_w_message("ERROR\nP not foand!\n");
-	
 	return (0);
 }
 
