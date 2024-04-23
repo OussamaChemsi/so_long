@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:47:36 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/22 06:53:30 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/23 07:25:18 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_map(t_data *data)
 	free(data->tab);
 }
 
-char	*ft_substr(char *src, int start, int end)
+char	*ft_substr(char *src, int start, int end , t_data *data)
 {
 	int		i;
 	char	*new_str;
@@ -38,9 +38,12 @@ char	*ft_substr(char *src, int start, int end)
 	if (!src)
 		return (NULL);
 	i = 0;
-	new_str = (char *)malloc((end - start) * sizeof(char) + 1);
+	new_str = (char *)malloc((end - start + 1) * sizeof(char));
 	if (new_str == NULL)
-		return (NULL);
+	{
+		free_map(data);
+		exit(0);
+	}	
 	while (start < end)
 	{
 		new_str[i] = src[start];

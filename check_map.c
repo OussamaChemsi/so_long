@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 18:24:32 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/22 07:09:10 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/22 21:48:21 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,34 @@ void	check_walls(t_data *data)
 			if (data->tab[0][j] != '1' || data->tab[i][0] != '1'
 				|| data->tab[i][data->width - 1] != '1'
 				|| data->tab[data->height - 1][j] != '1')
-				exit_w_message("ERROR\nmap should be sorounded by walls!\n");
+			{
+				free_map(data);
+				exit_w_message("ERROR\nmap should be sorounded by walls!\n");	
+			}
+
 			j++;
 		}
 		i++;
 	}
 }
 
-void	check_repeat(char **tab)
+void	check_repeat(t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (tab[i])
+	while (data->tab[i])
 	{
 		j = 0;
-		while (tab[i][j])
+		while (data->tab[i][j])
 		{
-			if ((tab[i][j] != '1') && (tab[i][j] != '0') && (tab[i][j] != 'x'))
+			if ((data->tab[i][j] != '1') && (data->tab[i][j] != '0') && (data->tab[i][j] != 'x'))
+			{
+				free_map(data);
 				exit_w_message("ERROR\ninvalid map!\n");
+			}
+				
 			j++;
 		}
 		i++;

@@ -6,27 +6,27 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 18:13:40 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/18 03:55:26 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/23 05:13:22 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_x(char **tab)
+void	check_x(t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (tab[i])
+	while (data->tab[i])
 	{
 		j = 0;
-		while (tab[i][j])
+		while (data->tab[i][j])
 		{
-			if (tab[i][j] == 'P' || tab[i][j] == 'C' || tab[i][j] == 'E')
+			if (data->tab[i][j] == 'P' || data->tab[i][j] == 'C' || data->tab[i][j] == 'E')
 			{
-				write(1, "ERROR\nmap invalid\n", 17);
-				exit(EXIT_FAILURE);
+				free_map(data);
+				exit_w_message("ERROR\nmap invalid\n");
 			}
 			j++;
 		}
@@ -34,45 +34,49 @@ void	check_x(char **tab)
 	}
 }
 
-int	x_p(char **tab)
+int	x_p(t_data *data)
 {
 	int	x;
 	int	y;
 
 	x = 0;
-	while (tab[x])
+	while (data->tab[x])
 	{
 		y = 0;
-		while (tab[x][y])
+		while (data->tab[x][y])
 		{
-			if (tab[x][y] == 'P')
+			if (data->tab[x][y] == 'P')
 				return (x);
 			y++;
 		}
 		x++;
 	}
+	free_map(data);
 	exit_w_message("ERROR\nP not foand!\n");
+
 	return (0);
 }
 
-int	y_p(char **tab)
+int	y_p(t_data *data)
 {
 	int	x;
 	int	y;
 
 	x = 0;
-	while (tab[x])
+	while (data->tab[x])
 	{
 		y = 0;
-		while (tab[x][y])
+		while (data->tab[x][y])
 		{
-			if (tab[x][y] == 'P')
+			if (data->tab[x][y] == 'P')
 				return (y);
 			y++;
 		}
 		x++;
 	}
+	free_map(data);
 	exit_w_message("ERROR\nP not foand!\n");
+	
 	return (0);
 }
 

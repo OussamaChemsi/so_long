@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 06:04:03 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/22 06:35:40 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/23 06:11:15 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	handler(int key, t_data *data)
 	if (key == ESC)
 	{
 		mlx_destroy_window(data->mlx, data->mlx_win);
+		free(data->mlx);
 		free_map(data);
 		exit(0);
 	}
@@ -34,6 +35,8 @@ int	handler(int key, t_data *data)
 int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->mlx_win);
+	free(data->mlx);
+	free_map(data);
 	exit(0);
 	return (0);
 }

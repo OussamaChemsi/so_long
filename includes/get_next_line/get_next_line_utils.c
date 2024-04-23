@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 01:37:38 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/22 06:08:13 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/22 23:50:25 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	*ft_strjoin(char *archive, char *buff)
 
 	if (!archive)
 		return (ft_strdup(buff));
+
 	if (!buff)
 		return (NULL);
 	str = malloc(sizeof(char) * ((ft_strlen(archive) + ft_strlen(buff)) + 1));

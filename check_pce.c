@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 21:16:57 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/18 03:53:17 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/22 22:19:35 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 void	print_error(t_data *data)
 {
 	if (data->c <= 0 || data->p != 1 || data->e != 1 || data->r != 0)
+	{
+		free_map(data);
 		exit_w_message("ERROR\n the map should have P,E and C\n");
+	}
+		
 }
 
 void	check_pce(t_data *data)

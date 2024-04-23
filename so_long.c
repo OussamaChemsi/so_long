@@ -6,37 +6,43 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 00:06:37 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/22 06:34:42 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/23 07:35:52 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	loop_map(t_data *data, int fd, char *tmp)
+void loop_map(t_data *data, int fd)
 {
+	char *line;
+	
 	while (data->line != NULL)
 	{
 		data->height++;
 		if (data->line[(int)ft_strlen(data->line) - 1] == '\n')
 		{
-			tmp = ft_substr(data->line, 0, data->width);
-			data->line = tmp;
+			line = data->line;
+			data->line = ft_substr(data->line, 0, data->width,data);
+			free(line);
 		}
 		if (data->width != (int)ft_strlen_w_nl(data->line))
+		{
+			free(data->lines);
+			free(data->line);
 			exit_w_message("ERROR\nyou have empty line!\n");
+		} 
 		data->lines = ft_strjoin(data->lines, data->line);
 		free(data->line);
 		data->line = get_next_line(fd);
 	}
+	free(data->line);
 	close(fd);
 }
 
-void	reading_map(char *av, t_data *data)
+void reading_map(char *av, t_data *data)
 {
-	int		fd;
-	char	*tmp;
-
-	tmp = NULL;
+	int fd;
+	char *line;
 	data->lines = NULL;
 	data->height = 0;
 	fd = open(av, O_RDONLY);
@@ -46,62 +52,76 @@ void	reading_map(char *av, t_data *data)
 	data->width = (int)ft_strlen_w_nl(data->line);
 	if (data->line[(int)ft_strlen(data->line) - 1] == '\n')
 	{
-		tmp = ft_substr(data->line, 0, data->width);
-		data->line = tmp;
+		line = data->line;
+		data->line = ft_substr(data->line, 0, data->width, data);
+		free(line);
 	}
 	if (!data->width)
+	{
+		free(data->line);
+		free(data->lines);
 		exit_w_message("ERROR\nempty map!\n");
-	loop_map(data, fd, tmp);
+	}
+	loop_map(data, fd);
 }
 
-void	tab_2d(t_data *data)
+void tab_2d(t_data *data)
 {
-	int	i;
-	int	start;
-	int	end;
+	int i;
+	int start;
+	int end;
 
 	i = 0;
 	start = 0;
 	end = data->width;
-	data->tab = malloc(data->height * sizeof(char **) + 1);
+	data->tab = malloc((data->height + 1) * sizeof(char *));
+	if(!data->tab)
+	{
+		free(data->lines);
+		exit_w_message("fail alocation");
+	}
 	while (i < data->height)
 	{
-		data->tab[i] = ft_substr(data->lines, start, end);
+		data->tab[i] = ft_substr(data->lines, start, end, data);
 		i++;
 		start += data->width;
 		end += data->width;
 	}
-	data->tab[i] = 0;
-	check_pce(data);
+
+	data->tab[data->height] = NULL;
 	free(data->lines);
+	check_pce(data);
 }
 
-void	maistro_func(char *av, t_data *data)
+void maistro_func(char *av, t_data *data)
 {
 	check_path(av);
 	reading_map(av, data);
 	tab_2d(data);
-	flood_fill(data, x_p(data->tab), y_p(data->tab));
-	check_repeat(data->tab);
+	flood_fill(data, x_p(data), y_p(data));
+	check_repeat(data);
 	check_walls(data);
 }
 
-int	main(int ac, char **av)
+int main(int ac, char **av)
 {
-	t_data	data;
+	//t_data data;
 
-	if (ac != 2)
-		exit_w_message("Takes two arguments\n");
-	maistro_func(av[1], &data);
-	data.mlx = mlx_init();
-	initialize_mlx_vars(&data);
-	message_xpm(&data);
-	reading_map(av[1], &data);
-	tab_2d(&data);
-	draw_map(&data);
-	mlx_hook(data.mlx_win, 2, 1L << 0, handler, &data);
-	mlx_hook(data.mlx_win, 17, 1L << 1, close_window, &data);
-	mlx_loop(data.mlx);
-	free_map(&data);
+	// if (ac != 2)
+	// 	exit_w_message("Takes two arguments\n");
+	(void)av;
+	(void)ac;
+	//maistro_func(av[1], &data);
+	// data.mlx = mlx_init();
+	// initialize_mlx_vars(&data);
+	// message_xpm(&data);
+	// free_map(&data);
+	// reading_map(av[1], &data);
+	// tab_2d(&data);
+	// draw_map(&data);
+	// mlx_hook(data.mlx_win, 2, 1L << 0, handler, &data);
+	// mlx_hook(data.mlx_win, 17, 1L << 1, close_window, &data);
+	// mlx_loop(data.mlx);
+	//free_map(&data);
 	return (0);
 }
