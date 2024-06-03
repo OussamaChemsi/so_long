@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 18:24:32 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/23 23:51:55 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/27 13:26:22 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,6 @@ void	check_path(char *av)
 		exit_w_message("ERROR\ninvalid path\n");
 	if ((ft_strstr(str, to_find) == 0) || (str[len - 5] == '/'))
 		exit_w_message("ERROR\ninvalid path\n");
-}
-
-void	check_size(t_data *data)
-{
-	if (data->width > 61 || data->height > 31)
-	{
-		free(data->line);
-		free(data->lines);
-		exit_w_message("ERROR\nbig map!\n");
-	}
 }
 
 int	close_window_1(t_data *data)

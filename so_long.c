@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 00:06:37 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/23 23:48:42 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/27 16:40:11 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ void	loop_map(t_data *data, int fd)
 	while (data->line != NULL)
 	{
 		data->height++;
+		if (data->width != (int)ft_strlen_w_nl(data->line))
+		{
+			free(data->lines);
+			free(data->line);
+			exit_w_message("ERROR\ninvalid map!\n");
+		}
 		if (data->line[(int)ft_strlen(data->line) - 1] == '\n')
 		{
 			line = data->line;
 			data->line = ft_substr(data->line, 0, data->width, data);
 			free(line);
-		}
-		if (data->width != (int)ft_strlen_w_nl(data->line))
-		{
-			free(data->lines);
-			free(data->line);
-			exit_w_message("ERROR\nyou have empty line!\n");
 		}
 		data->lines = ft_strjoin(data->lines, data->line);
 		free(data->line);
@@ -51,20 +51,19 @@ void	reading_map(char *av, t_data *data)
 		exit_w_message("file not found!\n");
 	data->line = get_next_line(fd);
 	data->width = (int)ft_strlen_w_nl(data->line);
-	if (data->line[(int)ft_strlen(data->line) - 1] == '\n')
-	{
-		line = data->line;
-		data->line = ft_substr(data->line, 0, data->width, data);
-		free(line);
-	}
 	if (!data->width)
 	{
 		free(data->line);
 		free(data->lines);
 		exit_w_message("ERROR\nempty map!\n");
 	}
+	if (data->line[(int)ft_strlen(data->line) - 1] == '\n')
+	{
+		line = data->line;
+		data->line = ft_substr(data->line, 0, data->width, data);
+		free(line);
+	}
 	loop_map(data, fd);
-	check_size(data);
 }
 
 void	tab_2d(t_data *data)

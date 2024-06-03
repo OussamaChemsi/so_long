@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 21:19:09 by ochemsi           #+#    #+#             */
-/*   Updated: 2023/12/16 23:30:46 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/27 15:23:46 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 11
+#  define BUFFER_SIZE 1
 # endif
 
 char	*get_next_line(int fd);

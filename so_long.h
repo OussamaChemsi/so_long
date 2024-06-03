@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 01:45:50 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/23 23:48:18 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/27 16:23:11 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <fcntl.h>
 # include <mlx.h>
 # include <stdarg.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -80,6 +79,5 @@ int			close_window(t_data *data);
 void		message_xpm(t_data *data);
 void		initialize_mlx_vars(t_data *data);
 int			close_window_1(t_data *data);
-void		check_size(t_data *data);
 
 #endif

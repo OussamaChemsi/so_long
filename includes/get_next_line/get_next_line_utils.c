@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 01:37:38 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/23 13:38:39 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/24 04:50:56 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ char	*ft_strchr(char *s, int c)
 	if (!s)
 		return (0);
 	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
+		return (&s[ft_strlen(s)]);
 	while (s[i] != '\0')
 	{
 		if (s[i] == (char)c)
-			return ((char *)&s[i]);
+			return (&s[i]);
 		i++;
 	}
 	return (0);

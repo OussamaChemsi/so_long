@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:47:36 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/23 07:25:18 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/27 13:27:47 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	exit_w_message(char *message)
 {
-	write(2, RED, strlen(RED));
-	write(2, message, strlen(message));
-	write(2, NC, strlen(NC));
+	write(2, RED, ft_strlen(RED));
+	write(2, message, ft_strlen(message));
+	write(2, NC, ft_strlen(NC));
 	exit(1);
 }
 

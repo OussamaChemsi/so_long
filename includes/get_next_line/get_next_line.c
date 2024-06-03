@@ -6,7 +6,7 @@
 /*   By: ochemsi <ochemsi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 21:17:36 by ochemsi           #+#    #+#             */
-/*   Updated: 2024/04/23 06:42:14 by ochemsi          ###   ########.fr       */
+/*   Updated: 2024/04/27 16:44:05 by ochemsi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,17 @@ char	*ft_read_to_archive(int fd, char *archive)
 
 char	*get_next_line(int fd)
 {
-	char		*line;
-	static char	*archive;
+	char	*line;
+	char	*archive;
 
+	archive = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	archive = ft_read_to_archive(fd, archive);
 	if (!archive)
 		return (NULL);
 	line = ft_get_line(archive);
-	archive = ft_new_archive(archive);
-	return (line);
+	return (free(archive), line);
 }
 
 // int	main(void)
@@ -117,7 +117,7 @@ char	*get_next_line(int fd)
 // 		return (0);
 // 	line = get_next_line(fd);
 // 	while(line != NULL)
-// 	{	
+// 	{
 // 		free(line);
 // 		line = get_next_line(fd);
 // 	}
