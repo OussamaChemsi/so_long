@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "libft.h": "c",
-        "so_long.h": "c",
-        "get_next_line.h": "c",
-        "fcntl.h": "c",
-        "unistd.h": "c"
-    }
-}
